@@ -1,0 +1,30 @@
+2. 
+create
+
+create table testdb.tlbl_student(
+	->id int primary key,
+	->name varchar(45) not null,
+	->addr varchar(45) not null,
+	->phone varchar(45) not null,	
+
+alter -열추가
+
+alter table tlbl_student add column gender varchar(1) not null;
+
+alter 열삭제
+
+alter table tlbl_student drop column phone;
+
+3.insert -값 추가
+INSERT INTO testdb.tlbl_student VALUES
+    -> (1, '홍길동', '대구', 'M'),
+    -> (2, '기명이', '울산', 'M'),
+    -> (3, '김미녀', '인천', 'W');
+
+update-값 변경
+
+update tlbl_student set addr='창원' where id='3';
+
+delete-값 삭제
+
+delete from tlbl_student where id='2'; 
