@@ -1,0 +1,57 @@
+DDL
+-create:구조 생성, alter:구조변경,drop:구조 삭제
+DML
+-select:조회,insert:삽입,update:수정,delete:삭제
+DCL
+-grat:허가권,revoke:철회,deny:거절
+
+drop(db삭제)
+-drop databases db명
+table삭제
+-drop table 테이블명
+
+
+           권한부여 작업(DCL)
+
+계정만들기 (cmd)
+1.show databases;
+2.select user,host from user;
+3.create user user20@localhost identified by '1234';
+
+계정 권환 확인하기
+show grants for 유저명@localhost; && @;
+
+권한 부여하기
+ grant select,insert,update,delete on testdb.* to user10@localhost;
+grant all privileges on testdb.* to user10@localhost;>> 모든권한 부여
+
+권한 제거하기
+revoke all on testdb.* from user10@localhost;
+
+실습하기 
+db생성=create database db명;
+user생성=create user 유저명@접석위치(localhost) identified by '1234'
+
+user10은 userdb10에 대해서 create 권한 부여하기
+-grant create on user10db.* to user10@localhost;
+
+user20은 user20에대해서 create,select 권한 부여하기
+-grant create,select on user20db.* to user20@localhost;
+
+user30은 user30db에 대해서 create,select,insert,update 권한부여하기
+-grant create,select,insert,update on user30db.* to user30@localhost;
+
+user40은 user40에 대해서 모든 권한 부여하기
+-grant all privileges on user40db.* to user40@localhost;
+
+백업
+-mysqldump -u root -p db명 > 백업할테이블.sql
+
+복구
+-mysql -u root -p db명 < 가져올테이블.sql
+
+내부에서복구
+-1.mysql -u root -p
+-2.테이블접속 use 테이블명
+-3.source 백업할테이블.sql
+
