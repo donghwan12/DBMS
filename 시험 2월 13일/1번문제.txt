@@ -1,0 +1,12 @@
+use lmsdb;
+
+
+select no,lec_duration,lec_time,t_name,lec_name,tbl_current_lecture.class_no
+from tbl_current_lecture
+inner join tbl_classroom
+on tbl_classroom.class_no=tbl_current_lecture.class_no
+inner join tbl_lecture
+on tbl_lecture.lec_code=tbl_current_lecture.lec_code
+inner join tbl_teacher
+on tbl_teacher.t_id=tbl_current_lecture.t_id;
+

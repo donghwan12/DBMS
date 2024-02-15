@@ -1,0 +1,22 @@
+use lmsdb;
+select *from tbl_teacher;
+select *from tbl_teacher_bak;
+
+drop trigger tbl_teacher_update_trg;
+delimiter $$
+create trigger tbl_teacher_update_trg
+after update
+on tbl_teacher
+for each row
+begin
+	 insert into tbl_teacher_bak values(
+     old.t_id,old.t_name,old.t_phone,old.t_addr,now(),delete_date);
+end $$
+delimiter ;
+
+
+insert into tbl_teacher values(7,'아무개','010-222-333','대구광역시 달서구');
+update tbl_teacher set t_name='아무무' where t_id='7';
+update tbl_teacher set t_phone='010-777-7777' where t_id=7;
+select *from tbl_teacher;
+select *from tbl_teacher_bak;
