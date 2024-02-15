@@ -1,0 +1,15 @@
+use lmsdb1;
+
+select *from tbl_current_lecture;
+select *from tbl_lecture;
+select *from view_current_lecture;
+
+SELECT
+    lec_name,
+    sum(if(lec_time='09:00-12:00',1,0))as '09:00-12:00',
+	sum(if(lec_time='13:00-15:00',1,0))as '13:00-15:00',
+	sum(if(lec_time='15:00-17:00',1,0))as '15:00-17:00'
+FROM
+    view_current_lecture
+GROUP BY
+    lec_name WITH ROLLUP;
